@@ -1,0 +1,134 @@
+/* frontend/src/RegionPage.css */
+
+.region-page-container {
+    max-width: 1500px; /* <<< 웹 크기 조정 */
+    margin: 0 auto;
+    /* padding: 20px; App.js 에서 관리되는 main-content-area의 패딩과 중복될 수 있음 */
+}
+
+.region-hero-section {
+    width: 100%;
+    height: 380px; /* 높이 약간 증가 */
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    border-radius: 0 0 12px 12px; /* 하단 모서리만 둥글게 (선택적) */
+    overflow: hidden; /* 내부 오버레이가 radius를 따르도록 */
+}
+
+.region-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 오버레이 약간 어둡게 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+    .region-hero-overlay h1 {
+        font-size: 3.2em; /* 제목 크기 증가 */
+        font-weight: bold;
+        margin: 0;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.75); /* 그림자 강화 */
+    }
+
+    .region-hero-overlay .region-slogan {
+        font-size: 1.25em; /* 슬로건 폰트 크기 */
+        margin-top: 12px; /* 제목과의 간격 */
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.65);
+    }
+
+.region-content-wrapper {
+    padding: 0 20px 30px 20px; /* 좌우 및 하단 패딩 */
+}
+
+.region-festivals-title {
+    font-size: 2.2em; /* 제목 크기 증가 */
+    text-align: center;
+    margin-bottom: 35px; /* 필터와의 간격 */
+    color: #2c3e50; /* 제목 색상 */
+}
+
+.region-filters { /* festival.css의 .search-bar 와 유사하게 스타일 통일 또는 커스텀 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px; /* 요소 간 간격 */
+    margin-bottom: 35px; /* 축제 목록과의 간격 */
+    padding: 18px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+    .region-filters input[type="date"],
+    .region-filters input[type="text"],
+    .region-filters button {
+        padding: 10px 14px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 0.95em;
+    }
+
+    .region-filters input[type="text"] {
+        min-width: 250px; /* 검색창 너비 */
+        flex-grow: 1;
+    }
+
+    .region-filters button {
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+        .region-filters button:hover {
+            background-color: #0056b3;
+        }
+
+/* .region-festivals-list 와 내부 .festival-list, .festival-card 등은
+   index.css 또는 festival.css 의 공용 스타일을 사용합니다.
+   만약 RegionPage에서만 다르게 보여야 한다면 여기에 추가 스타일을 정의합니다. */
+
+.warning-message, .error-message, .loading-message, .info-message {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.warning-message {
+    color: #856404;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+}
+
+.error-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.loading-message {
+    font-size: 1.2em;
+    color: #004085;
+}
+
+.info-message {
+    font-size: 1.1em;
+    color: #0c5460;
+}

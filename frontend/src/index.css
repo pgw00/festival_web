@@ -1,0 +1,189 @@
+/* frontend/src/index.css */
+
+html {
+    scroll-padding-top: 118px; /* NavBar 높이(70px) + .main-header의 상하 패딩(1.5rem*2) 고려 */
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #fafafa; /* home.css body 배경색과 일치 */
+    color: #333; /* home.css body 글자색과 일치 */
+    line-height: 1.6;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff; /* 기본 링크 색상 */
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+.main-content-area {
+    width: 100%;
+    /* App.js에서 style={{ paddingTop: '118px' }} 와 같이 정확한 값 적용 필요 */
+}
+
+.container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 20px; /* 페이지 좌우 여백 */
+    box-sizing: border-box;
+}
+
+/* --- NavBar 아이콘 스타일은 home.css에서 관리 --- */
+/* .header-icons button, .header-icons a, .header-icons img 관련 스타일은 home.css로 이동 */
+
+/* --- 프로필 및 언어 공통 드롭다운 스타일 --- */
+/* .header-icons .profile 의 position: relative 는 home.css 에서 관리 */
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 5px); /* 아이콘(40px) 바로 아래 + 간격 */
+    right: 0;
+    background: white;
+    border: 1px solid #ccc; /* 사용자 원본 */
+    padding: 0.5rem; /* 사용자 원본 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 사용자 원본 */
+    white-space: nowrap; /* 사용자 원본 */
+    z-index: 1010;
+    min-width: 130px;
+    border-radius: 4px;
+}
+
+.dropdown-item-button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px !important; /* 패딩을 조금 더 명확하고 일관되게 (기존 8px 12px 에서 변경) */
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 0.9rem; /* 폰트 크기 명시적 지정 및 !important */
+    line-height: 1.5 !important; /* 줄 높이를 명확하게 지정 */
+    cursor: pointer;
+    /* white-space: nowrap; */ /* <<< 이 부분을 일단 주석 처리하여 줄바꿈 허용 */
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+    border-radius: 3px;
+    overflow: hidden; /* <<< 추가: 내용이 넘칠 경우 숨김 */
+    text-overflow: ellipsis; /* <<< 추가: 내용이 넘쳐 숨겨질 때 말줄임표 표시 */
+}
+
+    .dropdown-item-button:hover {
+        background-color: #f5f5f5;
+    }
+
+.profile-dropdown > span {
+    padding: 8px 12px;
+    display: block;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.language-switcher .profile-dropdown {
+    min-width: 120px;
+}
+
+.dropdown-item-button.active {
+    background-color: #e9ecef;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.dropdown-item-button:disabled {
+    color: #6c757d;
+    cursor: default;
+    background-color: #f8f9fa !important;
+    font-weight: normal;
+}
+
+/* --- (이하 공용 메시지 피드백, 카드 스타일 등은 이전 답변과 동일하게 유지) --- */
+/* ... */
+
+/* --- 공용 카드 리스트 스타일 (사용자 원본 home.css 기반) --- */
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* 원본 */
+    gap: 1.5rem; /* 원본 */
+    padding: 10px 0; /* 목록 자체의 상하 패딩 */
+}
+
+.card {
+    background: white;
+    border-radius: 12px; /* 원본 */
+    padding: 1.2rem; /* 원본 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* 원본 */
+    overflow: hidden;
+    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    min-height: 380px; /* 내용 길이에 따라 유동적이도록 조절 가능 */
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+.card-image-top {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    margin-bottom: 0.8rem;
+    border-radius: 6px;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.3;
+}
+/* 원본 */
+.card .location {
+    color: #777;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+/* 원본 색상 약간 조정 */
+.card .desc {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+/* 원본 색상 약간 조정 */
+
+.login-prompt-link {
+    color: #007bff;
+    font-weight: 500;
+}
+
+    .login-prompt-link:hover {
+        text-decoration: underline;
+    }
+
+body.search-overlay-active > #root > .main-content-area {
+    filter: blur(4px) brightness(0.7);
+    transition: filter 0.3s ease-out;
+}

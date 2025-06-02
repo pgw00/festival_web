@@ -1,0 +1,38 @@
+/* ThemePage.css 또는 기존 CSS 파일에 추가 */
+.theme-page-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-size: 2em;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.theme-buttons-container {
+    /* 스타일은 ThemePage.jsx의 인라인 스타일을 참고하여 조정 */
+}
+
+.theme-button {
+    /* 스타일은 ThemePage.jsx의 인라인 스타일을 참고하여 조정 */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+    .theme-button:hover {
+        background-color: #e9ecef;
+        border-color: #adb5bd;
+    }
+
+    .theme-button.active {
+        /* 스타일은 ThemePage.jsx의 인라인 스타일을 참고하여 조정 */
+        /* 예:
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  */
+    }
+
+/* 축제 카드 스타일은 festival.css 재활용 */

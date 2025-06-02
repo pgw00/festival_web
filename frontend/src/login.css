@@ -1,0 +1,186 @@
+/* frontend/src/login.css */
+/* Register.jsx, FindAccount.jsx에서도 일부 스타일 공유 */
+
+.login-body { /* 페이지 전체를 감싸는 배경 스타일 */
+    min-height: calc(100vh - 70px); /* NavBar 높이 제외한 전체 화면 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* 상하좌우 여백 */
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container { /* 로그인/회원가입/계정찾기 폼 박스 */
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 35px 30px; /* 패딩 조정 */
+    width: 100%; /* 모바일에서 꽉 차도록 */
+    max-width: 400px; /* 최대 너비 설정 */
+    box-shadow: 0 10px 25px rgba(100, 149, 237, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #c5ddec; /* 테두리 약간 연하게 */
+    text-align: center; /* 내부 텍스트 기본 정렬 */
+}
+
+    .login-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(100, 149, 237, 0.4);
+    }
+
+    .login-title,
+    .login-container h2 { /* 공통 제목 스타일 */
+        text-align: center;
+        font-size: 24px; /* 폰트 크기 조정 */
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #3a6ea5;
+        border-bottom: 2px solid #a3c9f1; /* 밑줄 약간 연하게 */
+        padding-bottom: 12px;
+    }
+
+.login-form .form-group,
+.input-group { /* Register.jsx 와 FindAccount.jsx 공용 */
+    margin-bottom: 20px; /* 간격 조정 */
+    text-align: left; /* 레이블 왼쪽 정렬 */
+}
+
+    .input-group label {
+        display: block;
+        margin-bottom: 7px; /* 레이블과 인풋 간격 */
+        font-weight: 600;
+        color: #385d7a;
+        font-size: 0.95rem; /* 폰트 크기 조정 */
+    }
+
+    .form-input,
+    .input-group input[type="text"],
+    .input-group input[type="password"] {
+        width: 100%;
+        padding: 12px 15px; /* 패딩 조정 */
+        border: 1px solid #a3c9f1; /* 테두리 두께 조정 */
+        border-radius: 10px; /* 둥근 모서리 조정 */
+        font-size: 1rem; /* 폰트 크기 조정 */
+        box-sizing: border-box;
+        background-color: #f0f6ff; /* 배경색 약간 변경 */
+        color: #385d7a;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .form-input:focus,
+        .input-group input[type="text"]:focus,
+        .input-group input[type="password"]:focus {
+            outline: none;
+            border-color: #5aa0f4;
+            box-shadow: 0 0 0 0.2rem rgba(90, 160, 244, 0.25); /* 포커스 효과 개선 */
+            background-color: #fff;
+        }
+
+.login-button,
+.btn-login { /* 공용 버튼 스타일 */
+    width: 100%;
+    padding: 14px; /* 패딩 조정 */
+    background-color: #5aa0f4;
+    color: white;
+    border: none;
+    border-radius: 12px; /* 둥근 모서리 조정 */
+    font-size: 1.05rem; /* 폰트 크기 조정 */
+    font-weight: 600; /* 두께 조정 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(70, 137, 227, 0.4);
+}
+
+    .login-button:hover,
+    .btn-login:hover {
+        background-color: #3a6ea5;
+        box-shadow: 0 6px 16px rgba(47, 87, 150, 0.5);
+    }
+
+.login-links {
+    text-align: center;
+    margin-top: 20px; /* 간격 조정 */
+    font-size: 0.9rem; /* 폰트 크기 조정 */
+    color: #547a9b;
+}
+
+    .login-links a.link { /* .link 클래스에 직접 적용 */
+        color: #5aa0f4;
+        text-decoration: none;
+        margin: 0 8px; /* 링크 간 간격 */
+        font-weight: 500; /* 두께 조정 */
+        white-space: nowrap; /* 링크 줄바꿈 방지 */
+    }
+
+        .login-links a.link:hover {
+            text-decoration: underline;
+        }
+
+.social-login {
+    margin-top: 25px; /* 간격 조정 */
+    text-align: center;
+}
+
+.social-title {
+    font-size: 1rem; /* 폰트 크기 조정 */
+    color: #3a6ea5;
+    margin-bottom: 12px; /* 간격 조정 */
+    font-weight: 500; /* 두께 조정 */
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 18px; /* 아이콘 간격 조정 */
+}
+
+.social-icon {
+    width: 42px; /* 크기 조정 */
+    height: 42px;
+    cursor: pointer;
+    border-radius: 10px; /* 둥근 모서리 조정 */
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 2px 6px rgba(90, 160, 244, 0.25);
+}
+
+    .social-icon:hover {
+        transform: scale(1.1); /* 호버 효과 약간 줄임 */
+        box-shadow: 0 4px 12px rgba(90, 160, 244, 0.5);
+    }
+
+/* FindAccount.jsx 탭 버튼 스타일 */
+.find-account-tabs .tab-btn {
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+    .find-account-tabs .tab-btn:last-child {
+        margin-right: 0;
+    }
+
+    .find-account-tabs .tab-btn:hover {
+        background-color: #e9ecef;
+        border-color: #adb5bd;
+    }
+
+    .find-account-tabs .tab-btn.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+/* 에러 메시지 스타일 (Register, FindAccount 등) */
+.error-message {
+    color: red;
+    font-size: 0.85em; /* 폰트 크기 약간 줄임 */
+    margin-top: 4px;
+    margin-bottom: 0;
+    text-align: left; /* 에러 메시지 왼쪽 정렬 */
+}

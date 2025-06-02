@@ -1,0 +1,1511 @@
+/* frontend/src/home.css */
+
+/* --- 기본 & 테마 변수 --- */
+body {
+    font-family: 'NotoSansKR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* NotoSansKR 우선 적용 */
+    color: #333; /* 참고 CSS의 기본 텍스트 색상 반영 */
+    background-color: #f9f9f9; /* 페이지 전체 배경 */
+    line-height: 1.6;
+    margin: 0;
+    overflow-x: hidden;
+    font-weight: 400; /* 기본 폰트 두께 (NotoSansKR Regular) */
+}
+
+.home-page-container.vibrant-theme {
+    --theme-color-primary: #FF4B5C;
+    --theme-color-secondary: #00C6A7;
+    --theme-color-accent: #FFD166;
+    --text-color-dark: #222;
+    --text-color-light: #ffffff;
+    --text-color-gray: #666;
+    --card-bg-color: #ffffff;
+    --section-bg-light: #ffffff;
+    --section-bg-alt: #f7f7f7; /* 참고 CSS의 #f7f7f7 활용 */
+    --border-color-soft: #e6e6e6; /* 참고 CSS의 테두리색 활용 */
+    --border-radius-main: 10px; /* 참고 CSS 느낌 반영 */
+    --shadow-soft: 0 5px 15px rgba(0,0,0,0.06);
+    --shadow-medium: 0 8px 25px rgba(0,0,0,0.09);
+}
+
+/* =================================== */
+/* ========== MAIN NAVBAR =========== */
+/* =================================== */
+.main-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color-soft);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* 다른 요소 위에 항상 보이도록 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.top-bar {
+    width: 100%;
+    max-width: 1200px; /* 콘텐츠 최대 너비, 참고 사이트는 980px 이었으나 좀 더 넓게 설정 */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo-text {
+    font-size: 1.7rem;
+    font-weight: 800; /* NotoSansKR Bold */
+    color: var(--text-color-dark);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    margin-right: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+    .main-nav .nav-link {
+        font-size: 1rem; /* 16px */
+        font-weight: 400; /* NotoSansKR Regular */
+        color: var(--text-color-dark);
+        text-decoration: none;
+        padding: 8px 16px;
+        margin: 0 10px;
+        border-radius: 6px;
+        white-space: nowrap;
+        transition: color 0.2s ease, background-color 0.2s ease;
+        position: relative;
+        background-color: transparent;
+    }
+
+        .main-nav .nav-link:hover {
+            color: var(--theme-color-primary);
+            background-color: #f5f5f5;
+        }
+
+        .main-nav .nav-link.active {
+            color: var(--theme-color-primary);
+            font-weight: 700; /* NotoSansKR Medium 또는 Bold */
+        }
+
+            .main-nav .nav-link.active::after { /* 활성 링크 밑줄 효과 */
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 3px;
+                background-color: var(--theme-color-primary);
+                border-radius: 2px;
+            }
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+    .header-icons .icon-button {
+        background: none;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background-color 0.2s ease;
+        color: var(--text-color-gray);
+    }
+
+        .header-icons .icon-button:hover {
+            background-color: #f0f0f0;
+            color: var(--theme-color-primary);
+        }
+
+        .header-icons .icon-button img {
+            width: 22px;
+            height: 22px;
+            display: block;
+        }
+
+        .header-icons .icon-button svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+.profile-menu-container {
+    position: relative;
+}
+/* 드롭다운 관련 스타일은 index.css 에서 가져오거나 여기에 추가 정의 */
+.dropdown-user-info {
+    padding: 10px 15px;
+    display: block;
+    border-bottom: 1px solid #eee;
+    color: var(--text-color-dark);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.profile-dropdown .dropdown-item-button.logout {
+    color: #d9534f;
+}
+
+    .profile-dropdown .dropdown-item-button.logout:hover {
+        background-color: #f2dede;
+    }
+
+
+/* =================================== */
+/* --- 섹션 공통 스타일 --- */
+/* =================================== */
+.home-section {
+    padding: 70px 20px; /* 섹션 상하 여백 */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid var(--border-color-soft);
+}
+
+    .home-section:last-of-type {
+        border-bottom: none;
+    }
+
+    .home-section:nth-child(even) {
+        background-color: var(--section-bg-alt);
+    }
+
+    .home-section.no-background {
+        background-color: transparent;
+    }
+
+.home-section-title {
+    font-size: 2.2rem; /* 제목 크기 */
+    font-weight: 700; /* NotoSansKR Medium 또는 Bold */
+    color: var(--text-color-dark);
+    text-align: center;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+}
+
+    .home-section-title::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: var(--theme-color-primary);
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+
+    .home-section-title.secondary {
+        font-size: 1.9rem;
+    }
+
+        .home-section-title.secondary::after {
+            background-color: var(--theme-color-secondary);
+        }
+
+    .home-section-title.inverted {
+        color: var(--text-color-light);
+    }
+
+        .home-section-title.inverted::after {
+            background-color: var(--theme-color-accent);
+        }
+
+
+/* =================================== */
+/* --- 1. 히어로 슬라이더 --- */
+/* =================================== */
+.hero-slider-section.vibrant-hero {
+    width: 100%;
+    height: 500px; /* <<< 높이 수정: 이전 550px에서 500px로 */
+    min-height: 400px; /* 최소 높이 */
+    max-height: 600px; /* 최대 높이 */
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    color: var(--text-color-light);
+    overflow: hidden;
+    display: flex;
+    transition: background-image 1s ease-in-out; /* 배경 전환 시간 */
+    z-index: 1; /* 다른 일반 섹션들보다 z-index가 높거나 같아야 함 */
+}
+
+.hero-slide-overlay.vibrant-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 75, 92, 0.4), rgba(0, 198, 167, 0.3)), /* 투명도 약간 더 낮춤 */
+    linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.75) 100%); /* 하단 그림자 더 강화 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 왼쪽 정렬 유지 */
+    z-index: 2;
+}
+
+.hero-slide-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+    text-align: left;
+}
+
+.hero-text-block {
+    max-width: 550px;
+}
+
+.animated-text .hero-slide-kicker, .animated-text .hero-slide-title, .animated-text .hero-slide-desc, .animated-text .hero-slide-button {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.animated-text .hero-slide-title {
+    animation-delay: 0.15s;
+}
+
+.animated-text .hero-slide-desc {
+    animation-delay: 0.3s;
+}
+
+.animated-text .hero-slide-button {
+    animation-delay: 0.45s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-slide-kicker {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--theme-color-accent, #FFD166);
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .hero-slide-kicker svg {
+        vertical-align: middle;
+        font-size: 1.1em; /* 아이콘 크기 미세조정 */
+    }
+
+.hero-slide-title {
+    font-size: 3rem; /* <<< 크기 조정 */
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.hero-slide-desc {
+    font-size: 1.1rem; /* <<< 크기 조정 */
+    margin-bottom: 2rem;
+    max-width: 500px;
+    opacity: 0.9;
+    line-height: 1.65;
+}
+
+.hero-slide-button.vibrant-button {
+    background-color: var(--theme-color-primary);
+    color: var(--text-color-light);
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 75, 92, 0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+    .hero-slide-button.vibrant-button:hover {
+        background-color: #E04452;
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 7px 20px rgba(255, 75, 92, 0.5);
+    }
+
+.hero-slide-button .button-icon {
+}
+
+.slide-control.prev, .slide-control.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.25);
+    color: var(--text-color-light);
+    border: none;
+    padding: 0;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .slide-control.prev:hover, .slide-control.next:hover {
+        background-color: rgba(0,0,0,0.5);
+        transform: translateY(-50%) scale(1.05);
+    }
+
+.slide-control.prev {
+    left: 20px;
+}
+
+.slide-control.next {
+    right: 20px;
+}
+
+.slide-indicators {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+    .slide-indicators .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(255,255,255,0.4);
+        border: 1px solid rgba(255,255,255,0.5);
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .slide-indicators .indicator.active, .slide-indicators .indicator:hover {
+            background-color: var(--text-color-light);
+            border-color: var(--text-color-light);
+            transform: scale(1.1);
+        }
+
+/* --- 콘텐츠 구분 곡선 (SVG) --- */
+.section-divider-top {
+    background-color: var(--section-bg-alt);
+    line-height: 0;
+    margin-top: 0;
+    position: relative;
+    z-index: 0;
+}
+
+    .section-divider-top svg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+        .section-divider-top svg path {
+            fill: #f9f9f9;
+        }
+
+
+/* =================================== */
+/* --- 2. 큐레이션 섹션 --- */
+/* =================================== */
+.curation-section {
+    background-color: var(--section-bg-light);
+    position: relative;
+    z-index: 0;
+}
+
+.curation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 25px;
+}
+
+.curation-card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-main);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    color: var(--text-color-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .curation-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-medium);
+    }
+
+.curation-card-icon {
+    font-size: 2.5rem;
+    color: var(--theme-color-secondary);
+    margin-bottom: 15px;
+}
+
+    .curation-card-icon svg {
+        display: block;
+        margin: 0 auto;
+    }
+
+.curation-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.curation-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-color-gray);
+    margin-bottom: 18px;
+    line-height: 1.5;
+    min-height: 4.5em;
+}
+
+.curation-card-cta {
+    font-weight: 600;
+    color: var(--theme-color-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+    font-size: 0.9rem;
+}
+
+    .curation-card-cta:hover {
+        color: #E04452;
+    }
+
+    .curation-card-cta svg {
+        transition: transform 0.2s ease;
+    }
+
+.curation-card:hover .curation-card-cta svg {
+    transform: translateX(4px);
+}
+
+
+/* =================================== */
+/* --- 3. 주요/다가오는 축제 알림 --- */
+/* =================================== */
+.upcoming-festivals-highlight-section {
+    background-color: var(--section-bg-alt);
+    position: relative;
+    z-index: 0;
+}
+
+.upcoming-festivals-grid {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 5px;
+    gap: 25px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+    .upcoming-festivals-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+.upcoming-festival-card {
+    flex: 0 0 330px;
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+    .upcoming-festival-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: var(--shadow-medium);
+    }
+
+.upcoming-card-image-wrapper {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+}
+
+.upcoming-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.upcoming-festival-card:hover .upcoming-card-image {
+    transform: scale(1.08);
+}
+
+.upcoming-card-theme-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--theme-color-primary);
+    color: var(--text-color-light);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.upcoming-card-content {
+    padding: 20px;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.upcoming-card-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color-dark);
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.upcoming-card-location {
+    font-size: 0.85rem;
+    color: var(--text-color-gray);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.upcoming-card-date {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.upcoming-festivals-highlight-section .section-more-button-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.upcoming-festivals-highlight-section .section-more-button {
+    background-color: var(--theme-color-secondary);
+    color: var(--text-color-light);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .upcoming-festivals-highlight-section .section-more-button:hover {
+        background-color: #3AAFA6;
+        transform: scale(1.05);
+    }
+
+/* =================================== */
+/* --- 4. "이 지역 어때요?" 섹션 --- */
+/* =================================== */
+.featured-regions-section {
+    background-color: var(--section-bg-light);
+    position: relative;
+    z-index: 0;
+}
+
+    .featured-regions-section .home-section-title svg {
+        color: var(--theme-color-primary);
+    }
+
+.featured-regions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 25px;
+}
+
+.featured-region-card {
+    position: relative;
+    border-radius: var(--border-radius-main);
+    overflow: hidden;
+    height: 350px;
+    text-decoration: none;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .featured-region-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-medium);
+    }
+
+.featured-region-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.featured-region-card:hover .featured-region-image {
+    transform: scale(1.1);
+}
+
+.featured-region-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+    color: var(--text-color-light);
+    box-sizing: border-box;
+}
+
+.featured-region-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+}
+
+.featured-region-desc {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    opacity: 0.85;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =================================== */
+/* --- 5. 사용자 맞춤 추천 & 로그인 유도 --- */
+/* =================================== */
+.recommended-festivals-section.user-recommendations {
+    background-color: var(--section-bg-alt);
+    position: relative;
+    z-index: 0;
+}
+
+    .recommended-festivals-section.user-recommendations .home-section-title svg {
+        color: var(--theme-color-accent);
+    }
+
+.home-card-list.four-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.home-festival-card {
+    background: var(--card-bg-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+    .home-festival-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-medium);
+    }
+
+.home-card-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 65%;
+    overflow: hidden;
+    border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+}
+
+.home-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color-soft);
+}
+
+.home-card-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color-dark);
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 2.6em;
+}
+
+    .home-card-title a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+        .home-card-title a:hover {
+            color: var(--theme-color-primary);
+        }
+
+.home-card-location, .home-card-date {
+    font-size: 0.85rem;
+    color: var(--text-color-gray);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.home-card-date {
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.login-cta-section {
+    text-align: center;
+    background-color: var(--section-bg-light);
+    padding: 60px 20px;
+    position: relative;
+    z-index: 0;
+}
+
+.login-cta-icon {
+    font-size: 2.8rem !important;
+    margin-bottom: 15px !important;
+    color: var(--theme-color-primary) !important;
+}
+
+.login-cta-section .home-section-title.secondary {
+    margin-bottom: 15px;
+    color: var(--text-color-dark);
+}
+
+.login-cta-section p {
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 1.15rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-cta-section .hero-slide-button.vibrant-button {
+    background-color: var(--theme-color-accent);
+    color: var(--text-color-dark);
+    box-shadow: 0 5px 15px rgba(255, 209, 102, 0.5);
+}
+
+    .login-cta-section .hero-slide-button.vibrant-button:hover {
+        background-color: #E6B84C;
+        color: var(--text-color-dark);
+    }
+
+.recommended-festivals-section .section-more-button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.recommended-festivals-section .section-more-button {
+    background-color: transparent;
+    color: var(--theme-color-secondary);
+    border: 2px solid var(--theme-color-secondary);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .recommended-festivals-section .section-more-button:hover {
+        background-color: var(--theme-color-secondary);
+        color: var(--text-color-light);
+    }
+
+/* =================================== */
+/* --- 6. "여행 꿀팁" 섹션 --- */
+/* =================================== */
+.travel-tips-section {
+    background-color: var(--section-bg-light);
+    position: relative;
+    z-index: 0;
+}
+
+    .travel-tips-section .home-section-title svg {
+        color: var(--theme-color-secondary);
+    }
+
+.travel-tips-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.travel-tip-item {
+    background-color: var(--card-bg-color);
+    padding: 25px;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .travel-tip-item:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-medium);
+    }
+
+.tip-icon-wrapper {
+    font-size: 1.8rem;
+    color: var(--theme-color-primary);
+    padding-top: 3px;
+}
+
+    .tip-icon-wrapper svg {
+        display: block;
+    }
+
+.tip-content {
+    flex-grow: 1;
+}
+
+.tip-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color-dark);
+    margin: 0 0 8px 0;
+}
+
+.tip-summary {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.tip-arrow {
+    font-size: 1.2rem;
+    color: var(--border-color-soft);
+    transition: transform 0.2s ease, color 0.2s ease;
+    margin-left: auto;
+    align-self: center;
+}
+
+.travel-tip-item:hover .tip-arrow {
+    transform: translateX(5px);
+    color: var(--theme-color-primary);
+}
+
+/* =================================== */
+/* --- 7. 서비스 배너 --- */
+/* =================================== */
+.service-banner-section {
+    background-color: var(--section-bg-alt);
+    padding: 60px 20px;
+    position: relative;
+    z-index: 0;
+}
+
+    .service-banner-section .home-section-title svg {
+        color: var(--theme-color-accent);
+    }
+
+.service-banner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.service-banner-item {
+    position: relative;
+    border-radius: var(--border-radius-main);
+    overflow: hidden;
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    text-decoration: none;
+}
+
+    .service-banner-item:hover {
+        transform: scale(1.03) translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+
+.service-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 25px;
+    color: var(--text-color-light);
+    border-radius: var(--border-radius-main);
+}
+
+.service-banner-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+
+.service-banner-desc {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.service-banner-cta {
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+}
+
+.service-banner-item:hover .service-banner-cta {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* =================================== */
+/* --- 8. 커뮤니티 하이라이트 (카드형) --- */
+/* =================================== */
+.community-highlights-section {
+    background-color: var(--section-bg-light);
+    position: relative;
+    z-index: 0;
+}
+
+    .community-highlights-section .home-section-title svg {
+        color: var(--theme-color-primary);
+    }
+
+.community-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.community-highlight-card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .community-highlight-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-medium);
+    }
+
+.community-card-image-wrapper {
+    height: 180px;
+    overflow: hidden;
+}
+
+.community-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.community-highlight-card:hover .community-card-image {
+    transform: scale(1.05);
+}
+
+.community-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.highlight-type-badge {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    color: var(--text-color-light);
+    font-weight: 700;
+    flex-shrink: 0;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+    .highlight-type-badge.type-community_type_review {
+        background-color: #E74C3C;
+    }
+
+    .highlight-type-badge.type-community_type_tip {
+        background-color: #3498DB;
+    }
+
+    .highlight-type-badge.type-community_type_photo {
+        background-color: #9B59B6;
+    }
+
+.highlight-title-card {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-color-dark);
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 2.8em;
+}
+
+.highlight-meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.highlight-author-card {
+}
+
+.highlight-likes-card {
+    display: inline-flex;
+    align-items: center;
+}
+
+    .highlight-likes-card svg {
+        margin-right: 4px;
+        color: var(--theme-color-accent);
+    }
+
+.community-highlights-section .section-more-button-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.community-highlights-section .section-more-button {
+    background-color: var(--theme-color-primary);
+    color: var(--text-color-light);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+    .community-highlights-section .section-more-button:hover {
+        background-color: #E04452;
+    }
+
+/* =================================== */
+/* --- 9. 일자리 정보 섹션 --- */
+/* =================================== */
+.job-info-section.vibrant-bg {
+    background: linear-gradient(135deg, #43A0D6, #8E54E9);
+    color: var(--text-color-light);
+    border-radius: 20px;
+    padding: 60px 30px;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+
+.job-info-icon {
+    font-size: 3.5rem !important;
+    color: rgba(255,255,255,0.8) !important;
+    margin-bottom: 20px !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.job-info-section .home-section-title.secondary.inverted {
+    color: var(--text-color-light);
+}
+
+    .job-info-section .home-section-title.secondary.inverted::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: rgba(255,255,255,0.7);
+        margin: 10px auto 0;
+    }
+
+.job-info-section p.inverted-text {
+    color: rgba(255,255,255,0.9);
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.job-info-section .hero-slide-button.alt-button {
+    background-color: rgba(255,255,255,0.15);
+    border: 2px solid var(--text-color-light);
+    color: var(--text-color-light);
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .job-info-section .hero-slide-button.alt-button:hover {
+        background-color: var(--text-color-light);
+        color: #8E54E9;
+    }
+
+/* =================================== */
+/* --- 10. 푸터 --- */
+/* =================================== */
+.home-footer {
+    background-color: #181a1d;
+    color: #c0c7d2;
+    padding: 70px 20px 50px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 0;
+}
+
+.footer-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-top-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 25px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid #33383d;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #e0e7ee;
+    font-weight: 500;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    .footer-links a:hover {
+        color: var(--theme-color-accent, #FFD166);
+        text-decoration: underline;
+    }
+
+.footer-main-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 30px 40px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.footer-info .footer-appname {
+    font-size: 1.7rem;
+    color: #fff;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    font-size: 0.88rem;
+}
+
+.footer-link-group h4 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-link-group a {
+    display: block;
+    color: #c0c7d2;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+    .footer-link-group a:hover {
+        color: var(--theme-color-accent, #FFD166);
+        text-decoration: underline;
+    }
+
+.footer-social-and-partners h4 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+    .footer-social-icons img {
+        width: 30px;
+        height: 30px;
+        opacity: 0.7;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .footer-social-icons a:hover img {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+.footer-copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #33383d;
+    font-size: 0.825rem;
+    color: #999;
+}
+
+    .footer-copyright p {
+        margin: 5px 0;
+    }
+
+/* --- 메시지 스타일 --- */
+.loading-message, .error-message, .info-message, .login-prompt-message {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.error-message {
+    color: #e74c3c;
+}
+
+.login-prompt-link {
+    color: var(--theme-color-secondary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .login-prompt-link:hover {
+        text-decoration: underline;
+    }
+
+/* --- 반응형 조정 --- */
+@media (max-width: 1024px) {
+    .hero-slide-title {
+        font-size: 3.2rem;
+    }
+
+    .home-section-title {
+        font-size: 2.2rem;
+    }
+
+    .upcoming-festival-card {
+        flex: 0 0 280px;
+    }
+
+    .footer-main-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .home-section {
+        padding: 50px 15px;
+    }
+
+    .home-section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .hero-slider-section.vibrant-hero {
+        min-height: 480px;
+        height: auto;
+        padding: 50px 0;
+    }
+    /* 히어로 높이 모바일 조정 */
+    .hero-text-block {
+        max-width: 100%;
+        text-align: center;
+        padding: 0 15px;
+    }
+
+    .hero-slide-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-slide-desc {
+        font-size: 1.1rem;
+    }
+
+    .slide-control.prev, .slide-control.next {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .slide-control.prev {
+        left: 15px;
+    }
+
+    .slide-control.next {
+        right: 15px;
+    }
+
+    .slide-indicators {
+        bottom: 25px;
+    }
+
+    .upcoming-festivals-grid {
+        gap: 15px;
+        margin: 0 -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .upcoming-festival-card {
+        flex: 0 0 250px;
+    }
+
+    .curation-grid, .featured-regions-grid, .service-banner-grid, .community-highlights-grid, .travel-tips-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .featured-region-card {
+        height: 280px;
+    }
+
+    .service-banner-item {
+        height: 220px;
+    }
+
+    .footer-main-content {
+        text-align: center;
+    }
+
+    .footer-social-icons {
+        justify-content: center;
+    }
+
+    .footer-top-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slide-title {
+        font-size: 2.2rem;
+    }
+
+    .home-section-title {
+        font-size: 1.8rem;
+    }
+
+    .upcoming-festival-card {
+        flex: 0 0 220px;
+    }
+
+    .curation-card, .travel-tip-item {
+        padding: 20px;
+    }
+
+    .curation-card-icon {
+        font-size: 2.5rem;
+    }
+
+    .curation-card-title, .tip-title {
+        font-size: 1.2rem;
+    }
+
+    .featured-region-name {
+        font-size: 1.2rem;
+    }
+}
